@@ -19,7 +19,7 @@ app.use(logRequest);
 app.use(express.json());
 //ini cara menggunakan function/middleware dari folder lain
 app.use("/users", usersRouters);
-//ini langsung membuat function get langsung
+//ini kode untuk mengambil data dari data base execute untuk query
 app.get("/", (req, res) => {
   dbPool.execute("SELECT * FROM users", (err, rows) => {
     if (err) {
