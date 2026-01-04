@@ -1,16 +1,19 @@
 const { json } = require("express");
+const userModels = require("../models/users");
 
-const getAllUsers = (req, res) => {
-  const data = {
-    id: 1,
-    nama: "Darmawan",
-    email: "darmawan@gmail.com",
-    alamat: "Lamongan",
-  };
-  res.json({
-    massage: "GET All Users Success",
-    data: data,
-  });
+const getAllUsers = async (req, res) => {
+  try {
+    const [data] = await userModels.getAllUsersDB();
+    res.json({
+      massage: "GET All Users Success",
+      data: data,
+    });
+  } catch (error) {
+    res.status(500).json({
+      massage: "Server Error",
+      serverMassage: error,
+    });
+  }
 };
 //di post ini indikator suksesnya kita bisa menerima data req.body yg di kirim dari frond an sehingga bisa kita simpan ke database atau kita olah lagi
 const createAllUsers = (req, res) => {
