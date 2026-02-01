@@ -17,6 +17,8 @@ app.use("/users", usersRouters);
 //ini kode untuk mengambil data dari data base execute untuk query
 app.get("/", getAllUsers);
 app.post("/", createAllUsers);
+//middleware untuk mengambil data file
+app.use("/assets", express.static("public/images"));
 app.listen(PORT, () => {
   console.log(`Server Sudah Berjalan di Port ${PORT}`);
 });

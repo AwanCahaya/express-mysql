@@ -17,13 +17,20 @@ const getAllUsers = async (req, res) => {
 };
 //di post ini indikator suksesnya kita bisa menerima data req.body yg di kirim dari frond an sehingga bisa kita simpan ke database atau kita olah lagi
 const createAllUsers = async (req, res) => {
+  //untuk memberikan status API & cek data harus lengkap
+  // if (!body.name || !body.email || !body.address) {
+  //   res.status(400).json({
+  //     massage: "Data yang anda kirimkan tidak sesuai",
+  //     data: "null",
+  //   });
+  // }
   try {
     //tangkap nilai body
     const { body } = req;
     //panggil models untuk menyimpan ke database
     await userModels.dynamicCreateUsersDB(body);
     //merespon ke users
-    res.json({
+    res.status(201).json({
       massage: "POST All Users Success",
       //ini req.body untuk menangkap isi dari req user yg di kirim frondand
       data: body,
